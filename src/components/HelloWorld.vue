@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Analytics for www.accordersaguitare.com</h1>
+    <p>Parsing <a href="https://github.com/maxime-michel/netlify-analytics">netlify-analytics</a> from data store type <tt>jsonbox.io</tt> with id <tt>box_ddae612d6b46739bd634</tt></p>
     <div class="hello" ref="chartdiv">
     </div>
   </div>
