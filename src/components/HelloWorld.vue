@@ -49,10 +49,6 @@ export default {
     series.tooltipText = "{valueY.value}";
     chart.cursor = new am4charts.XYCursor();
 
-    let scrollbarX = new am4charts.XYChartScrollbar();
-    scrollbarX.series.push(series);
-    chart.scrollbarX = scrollbarX;
-
     this.chart = chart;
   },
 
