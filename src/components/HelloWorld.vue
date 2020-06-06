@@ -16,6 +16,11 @@ export default {
   mounted() {
     let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
+    var title = chart.titles.create();
+    title.text = "Total views per day";
+    title.fontSize = 25;
+    title.marginBottom = 30;
+
     chart.paddingRight = 20;
 
     let data = [];
