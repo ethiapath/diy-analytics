@@ -1,5 +1,8 @@
 <template>
-  <div class="hello" ref="chartdiv">
+  <div>
+    <h1>Analytics for www.accordersaguitare.com</h1>
+    <div class="hello" ref="chartdiv">
+    </div>
   </div>
 </template>
 
