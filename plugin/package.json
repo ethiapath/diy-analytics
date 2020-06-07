@@ -1,0 +1,16 @@
+{
+  "name": "netlify-plugin-diy-analytics",
+  "version": "1.0.0",
+  "description": "Netlify plugin to install a DIY Analytics counter function.",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/maxime-michel/diy-analytics",
+    "type": "git"
+  },
+  "keywords": ["netlify", "netlify-plugin"],
+  "author": "Maxime Michel <mmichel2703@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxime-michel/diy-analytics/issues"
+  }
+}

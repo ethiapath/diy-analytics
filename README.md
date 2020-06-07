@@ -26,7 +26,7 @@ Now, add the DIY Analytics Netlify plugin to your website, with the following
 in `netlify.toml`:
 
     [[plugins]]
-    package = "diy-analytics"
+    package = "netlify-plugin-diy-analytics"
 
 While in your repository, add the tracking pixel to your pages:
 
