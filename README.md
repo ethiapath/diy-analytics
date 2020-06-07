@@ -34,7 +34,7 @@ one:
 
     {
       "dependencies": {
-        "netlify-plugin-diy-analytics": "^1.0.1"
+        "netlify-plugin-diy-analytics": "^1.0.2"
       }
     }
 
