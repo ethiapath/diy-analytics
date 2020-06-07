@@ -28,6 +28,20 @@ in `netlify.toml`:
     [[plugins]]
     package = "netlify-plugin-diy-analytics"
 
+In order for the build bot to download the plugin, add it to your 
+`package.json`, or make the following minimalistic one in case you don't have 
+one:
+
+    {
+      "dependencies": {
+        "netlify-plugin-diy-analytics": "^1.0.1"
+      }
+    }
+
+If not already done, define a recent enough Node version for Netlify plugins to 
+work, either in `.node-version` or as an environment variable: 
+`NODE_VERSION=10`
+
 While in your repository, add the tracking pixel to your pages:
 
     <img src=".netlify/functions/counter" alt="" style="position:absolute" />
