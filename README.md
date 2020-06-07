@@ -56,6 +56,7 @@ not working
 - stop writing to a jsonbox when it's over 5'000 records, as requested in [the 
 documentation][jsonbox-doc]
 - support more storage options (S3?)
+- use `node-fetch` to simplify `counter.js`
 
 ## Credits
 
