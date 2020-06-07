@@ -2,8 +2,8 @@
   <div id="app">
     <h1>Analytics for www.accordersaguitare.com</h1>
     <p>Parsing <a href="https://github.com/maxime-michel/diy-analytics">DIY Analytics</a> from data store type <tt>jsonbox.io</tt> with id <tt>box_ddae612d6b46739bd634</tt></p>
-    <TotalViewsPerDay :data="data.totalViewsPerDay"/>
-    <TopPages :data="data.topPages"/>
+    <TotalViewsPerDay :data="totalViewsPerDay" v-if="isLoaded"/>
+    <TopPages :data="topPages" v-if="isLoaded"/>
   </div>
 </template>
 
@@ -11,63 +11,23 @@
 import TotalViewsPerDay from './components/TotalViewsPerDay.vue'
 import TopPages from './components/TopPages.vue'
 
-let totalViewsPerDayMockData = [];
-let visits = 10;
-for (let i = 1; i < 366; i++) {
-  visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-  totalViewsPerDayMockData.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-}
+function prepareData(json) {
+  const uniqueDates = [...new Set(json.map(visit => visit._createdOn.substring(0, 10)))];
+  const totalsPerDate = new Map([...new Set(json)].map(
+    x => [x._createdOn.substring(0, 10), json.filter(y => y._createdOn.substring(0, 10) === x._createdOn.substring(0, 10)).length]
+  ));
+  let totalViewsPerDay = [];
+  uniqueDates.forEach((date) => totalViewsPerDay.push({"date": date, "value": totalsPerDate.get(date)}));
 
-let topPagesMockData = [
-    {
-      "network": "Facebook",
-      "MAU": 2255250000
-    },
-    {
-      "network": "Google+",
-      "MAU": 430000000
-    },
-    {
-      "network": "Instagram",
-      "MAU": 1000000000
-    },
-    {
-      "network": "Pinterest",
-      "MAU": 246500000
-    },
-    {
-      "network": "Reddit",
-      "MAU": 355000000
-    },
-    {
-      "network": "TikTok",
-      "MAU": 500000000
-    },
-    {
-      "network": "Tumblr",
-      "MAU": 624000000
-    },
-    {
-      "network": "Twitter",
-      "MAU": 329500000
-    },
-    {
-      "network": "WeChat",
-      "MAU": 1000000000
-    },
-    {
-      "network": "Weibo",
-      "MAU": 431000000
-    },
-    {
-      "network": "Whatsapp",
-      "MAU": 1433333333
-    },
-    {
-      "network": "YouTube",
-      "MAU": 1900000000
-  }
-]
+  const uniquePages = [...new Set(json.map(visit => visit.url))];
+  const totalsPerPage = new Map([...new Set(json)].map(
+    x => [x.url, json.filter(y => y.url === x.url).length]
+  ));
+  let topPages = [];
+  uniquePages.forEach((page) => topPages.push({"page": page, "visits": totalsPerPage.get(page)}));
+
+  return {topPages: topPages, totalViewsPerDay: totalViewsPerDay};
+}
 
 export default {
   name: 'App',
@@ -77,11 +37,26 @@ export default {
   },
   data() {
     return {
-      data: {
-        totalViewsPerDay: totalViewsPerDayMockData,
-        topPages: topPagesMockData
-      }
+      totalViewsPerDay: null,
+      topPages: null
     }
+  },
+  computed: {
+    isLoaded: function() {
+      if (this.topPages != null && this.totalViewsPerDay != null) {
+        return true;
+      }
+      return false;
+    }
+  },
+  mounted () {
+    fetch('https://jsonbox.io/box_299daa0b08f7d40aadf3?limit=1000')
+      .then(response => response.json())
+      .then(json => {
+        var data = prepareData(json);
+        this.topPages = data.topPages;
+        this.totalViewsPerDay = data.totalViewsPerDay;
+      });
   }
 }
 </script>
