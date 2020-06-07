@@ -17,20 +17,42 @@ account at all for websites that make no or little revenue.
 
 ## Installation
 
-1. create a jsonbox
-2. add the environment variable
-3. add the DIY plugin to your website
-4. you may now browse 
-https://diy-analytics.netlify.app/jsonbox/box_ddae612d6b46739bd634
+Head over to [jsonbox][jsonbox] and copy the temporary box URL that was created 
+for you.
 
-https://docs.netlify.com/configure-builds/build-plugins/create-plugins/#anatomy-of-a-plugin
+Next, use that URL and define `ANALYTICS_URL` in your build's settings.
+
+Now, add the DIY Analytics Netlify plugin to your website, with the following 
+in `netlify.toml`:
+
+    [[plugins]]
+    package = "diy-analytics"
+
+While in your repository, add the tracking pixel to your pages:
+
+    <img src=".netlify/functions/counter" alt="" style="position:absolute" />
+
+After a build and some visits, you'll now be able to see charts at 
+`https://diy-analytics.netlify.app/jsonbox/<YOUR_JSONBOX_ID>`.
+
+## TODO's
+
+- report to Netlify that their [`functions-utils` example][netlify-example] is 
+not working
+- stop writing to a jsonbox when it's over 5'000 records, as requested in [the 
+documentation][jsonbox-doc]
+- support more storage options (S3?)
 
 ## Credits
 
-This project would not have been possible without [Oliver Jam's initial effort 
-& blog post][blog-post], [jsonbox.io][jsonbox], and [Netlify's free hosting and 
-computing][netlify].
+This project would not have been possible without:
+
+- [Oliver Jam's initial effort & blog post][blog-post],
+- [jsonbox.io][jsonbox],
+- and [Netlify's free hosting and computing][netlify].
 
 [jsonbox]:https://jsonbox.io/
 [blog-post]:https://oliverjam.es/blog/diy-analytics-netlify-functions/
 [netlify]:https://www.netlify.com/
+[netlify-example]:https://github.com/netlify/build/tree/master/packages/functions-utils
+[jsonbox-doc]:https://github.com/vasanthv/jsonbox#readme
