@@ -13,6 +13,9 @@ am4core.useTheme(am4themes_animated);
 
 export default {
   name: 'TotalViewsPerDay',
+  props: {
+    data: Array
+  },
   mounted() {
     let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
@@ -23,14 +26,7 @@ export default {
 
     chart.paddingRight = 20;
 
-    let data = [];
-    let visits = 10;
-    for (let i = 1; i < 366; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-    }
-
-    chart.data = data;
+    chart.data = this.$props.data;
 
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
