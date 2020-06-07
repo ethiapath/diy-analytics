@@ -28,6 +28,12 @@ in `netlify.toml`:
     [[plugins]]
     package = "netlify-plugin-diy-analytics"
 
+You might also want to add the following in `netlify.toml`, in case you've not 
+defined a folder for functions in the UI:
+
+    [build]
+      functions = "functions"
+
 In order for the build bot to download the plugin, add it to your 
 `package.json`, or make the following minimalistic one in case you don't have 
 one:
