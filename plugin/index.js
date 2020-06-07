@@ -1,5 +1,5 @@
 module.exports = {
-  onPreBuild: () => {
-    console.log('Hello world from onPreBuild event!')
+  async onPreBuild({ utils }) {
+    await utils.functions.add('./counter.js')
   },
 }
