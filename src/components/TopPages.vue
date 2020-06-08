@@ -51,7 +51,7 @@ export default {
     var labelBullet = series.bullets.push(new am4charts.LabelBullet())
     labelBullet.label.horizontalCenter = "left";
     labelBullet.label.dx = 10;
-    labelBullet.label.text = "{values.valueX.workingValue.formatNumber('#.0as')}";
+    labelBullet.label.text = "{values.valueX.workingValue}";
     labelBullet.locationX = 1;
 
     // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
