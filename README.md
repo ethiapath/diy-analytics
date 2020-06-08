@@ -28,7 +28,7 @@ in `netlify.toml`:
     [[plugins]]
     package = "netlify-plugin-diy-analytics"
 
-You might also want to add the following in `netlify.toml`, in case you've not 
+You'll also need to add the following in `netlify.toml`, in case you've not 
 defined a folder for functions in the UI:
 
     [build]
