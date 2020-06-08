@@ -48,7 +48,7 @@ If not already done, define a recent enough Node version for Netlify plugins to
 work, either in `.node-version` or as an environment variable: 
 `NODE_VERSION=10`
 
-While in your repository, add the tracking pixel to your pages:
+Finally, add the tracking pixel to your pages:
 
     <img src="<YOUR_DOMAIN>/.netlify/functions/counter" alt="" style="position:absolute" />
 
