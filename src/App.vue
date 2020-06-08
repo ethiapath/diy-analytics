@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>Analytics for www.accordersaguitare.com</h1>
-    <p>Parsing <a href="https://github.com/maxime-michel/diy-analytics">DIY Analytics</a> from data store type <tt>jsonbox.io</tt> with id <tt>box_ddae612d6b46739bd634</tt></p>
+    <h1>DIY Analytics</h1>
+    <p>From data store type <tt>jsonbox.io</tt> with id <tt>box_ddae612d6b46739bd634</tt></p>
     <TotalViewsPerDay :data="totalViewsPerDay" v-if="isLoaded"/>
     <TopPages :data="topPages" v-if="isLoaded"/>
   </div>
