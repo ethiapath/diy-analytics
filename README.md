@@ -52,9 +52,6 @@ Finally, add the tracking pixel to your pages:
 
     <img src="<YOUR_DOMAIN>/.netlify/functions/counter" alt="" style="position:absolute" />
 
-After a build and some visits, you'll now be able to see charts at 
-`https://diy-analytics.netlify.app/jsonbox/<YOUR_JSONBOX_ID>`.
-
 ## TODO's
 
 - report to Netlify that their [`functions-utils` example][netlify-example] is 

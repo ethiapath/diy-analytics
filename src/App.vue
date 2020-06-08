@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>DIY Analytics</h1>
-    <p>From data store type <tt>jsonbox.io</tt> with id <tt>box_ddae612d6b46739bd634</tt></p>
-    <TotalViewsPerDay :data="totalViewsPerDay" v-if="isLoaded"/>
-    <TopPages :data="topPages" v-if="isLoaded"/>
+    <p>From <input type="text" placeholder="Type a name" v-model="url" /></p>
+    <TotalViewsPerDay :data="totalViewsPerDay" v-if="isLoaded" :key="url"/>
+    <TopPages :data="topPages" v-if="isLoaded" :key="url"/>
   </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
   },
   data() {
     return {
+      url: 'https://jsonbox.io/box_299daa0b08f7d40aadf3',
       totalViewsPerDay: null,
       topPages: null
     }
@@ -50,26 +51,44 @@ export default {
     }
   },
   mounted () {
-    fetch('https://jsonbox.io/box_299daa0b08f7d40aadf3?limit=1000')
-      .then(response => response.json())
-      .then(json => {
-        var data = prepareData(json);
-        this.topPages = data.topPages;
-        this.totalViewsPerDay = data.totalViewsPerDay;
-      });
-  }
+    this.init();
+  },
+  watch: {
+    url: function() {
+      this.topPages = null;
+      this.totalViewsPerDay = null;
+      this.init();
+    }
+  },
+  methods: {
+    init() {
+      fetch(this.url + '?limit=1000')
+        .then(response => response.json())
+        .then(json => {
+          var data = prepareData(json);
+          this.topPages = data.topPages;
+          this.totalViewsPerDay = data.totalViewsPerDay;
+        });
+      }
+  },
+
 }
 </script>
 
 <style>
-#app {
-  width: 80%;
-  margin: 0 auto;
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+}
+#app {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
   margin-top: 60px;
+}
+input {
+  width: 300px;
 }
 </style>
