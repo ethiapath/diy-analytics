@@ -52,6 +52,13 @@ Finally, add the tracking pixel to your pages:
 
     <img src="<YOUR_DOMAIN>/.netlify/functions/counter" alt="" style="position:absolute" />
 
+You should now be able to simply paste your jsonbox URL at 
+https://diy-analytics.netlify.app/ in order to get two simple visualisations on 
+your traffic:
+
+![DIY Analytics in 
+action](https://raw.githubusercontent.com/maxime-michel/diy-analytics/master/screenshot.png)
+
 ## TODO's
 
 - report to Netlify that their [`functions-utils` example][netlify-example] is 
