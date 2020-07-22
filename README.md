@@ -61,8 +61,6 @@ action](https://raw.githubusercontent.com/maxime-michel/diy-analytics/master/scr
 
 ## TODO's
 
-- report to Netlify that their [`functions-utils` example][netlify-example] is 
-not working
 - stop writing to a jsonbox when it's over 5'000 records, as requested in [the 
 documentation][jsonbox-doc]
 - support more storage options (S3?)
