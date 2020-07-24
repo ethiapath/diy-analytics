@@ -1,10 +1,9 @@
 var fs  = require("fs");
-var path  = require("path");
 
 module.exports = {
   async onPreBuild({ utils }) {
 
-    fs.readFile(path.resolve(__dirname, 'counter.js'), 'utf8', function (err,data) {
+    fs.readFile(require.resolve('netlify-plugin-diy-analytics/counter.js'), 'utf8', function (err,data) {
       if (err) {
         return console.log(err);
       }
