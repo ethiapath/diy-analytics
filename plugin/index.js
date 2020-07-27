@@ -1,3 +1,4 @@
+var netlifyPluginDiyAnalytics = require("netlify-plugin-diy-analytics");
 var fs  = require("fs");
 
 module.exports = {
