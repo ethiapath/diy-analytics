@@ -4,4 +4,7 @@
   functions = "functions"
 
 [[plugins]]
-package = "/plugin"
+package = "@netlify/plugin-local-install-core"
+
+[[plugins]]
+package = "/plugin/netlify-plugin-diy-analytics"

@@ -4,7 +4,7 @@
   "description": "Netlify plugin to install a DIY Analytics counter function.",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/maxime-michel/diy-analytics",
+    "url": "https://github.com/ethiapath/diy-analytics",
     "type": "git"
   },
   "keywords": ["netlify", "netlify-plugin"],
