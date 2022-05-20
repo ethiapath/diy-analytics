@@ -15,7 +15,9 @@ exports.handler = async ({ headers }) => {
     try {
       // push a new record for this url & UA
       const body = JSON.stringify({ url: pathname, ua });
-      await fetch(ANALYTICS_URL, { method: "POST", body });
+      await fetch(ANALYTICS_URL, { method: "POST", body, headers: {
+        "X-Master-Key": process.env.MASTER_KEY, 
+      }});
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +40,7 @@ function fetch(url, options = { method: "GET" }) {
         ? {
             "content-type": "application/json",
             "content-length": Buffer.byteLength(options.body),
+            ...(options.headers ? options.headers : {})
           }
         : {};
     const req = https.request(url, { ...options, headers }, response => {

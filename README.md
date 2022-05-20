@@ -17,8 +17,8 @@ account at all for websites that make no or little revenue.
 
 ## Installation
 
-Head over to [jsonbox][jsonbox] and copy the temporary box URL that was created 
-for you.
+~~Head over to [jsonbox][jsonbox] and copy the temporary box URL that was created 
+for you.~~
 
 Next, use that URL and define `ANALYTICS_URL` in your build's settings.
 
@@ -74,8 +74,13 @@ This project would not have been possible without:
 - [jsonbox.io][jsonbox],
 - and [Netlify's free hosting and computing][netlify].
 
-[jsonbox]:https://jsonbox.io/
-[blog-post]:https://oliverjam.es/blog/diy-analytics-netlify-functions/
-[netlify]:https://www.netlify.com/
-[netlify-example]:https://github.com/netlify/build/tree/master/packages/functions-utils
-[jsonbox-doc]:https://github.com/vasanthv/jsonbox#readme
+~~[jsonbox](https://jsonbox.io/) ~~ (jsonbox.io is dead. Switched to jsonbin.io)
+
+[jsonbin](https://jsonbin.io/)
+[blog-post](https://oliverjam.es/blog/diy-analytics-netlify-functions/)
+[netlify](https://www.netlify.com/)
+[netlify-example](https://github.com/netlify/build/tree/master/packages/functions-utils)
+
+~~[jsonbox-doc](https://github.com/vasanthv/jsonbox#readme) ~~
+
+[jsonbin docs](https://jsonbin.io/api-reference/)
