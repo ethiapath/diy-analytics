@@ -1,36 +1,4 @@
-const https = require("https");
-
-const ANALYTICS_URL = process.env.ANALYTICS_URL;
-
-exports.handler = async ({ headers }) => {
-  if (ANALYTICS_URL) {
-    // referer is the page the request came from
-    // e.g. https://oliverjam.es/blog/
-    const referer = headers.referer;
-    const ua = headers["user-agent"];
-    // pathname is the bit after the domain
-    // e.g. /blog/
-    const { pathname } = new URL(referer);
-
-    try {
-      // push a new record for this url & UA
-      const body = JSON.stringify({ url: pathname, ua });
-      await fetch(ANALYTICS_URL, { method: "POST", body, headers: {
-        "X-Master-Key": process.env.MASTER_KEY, 
-      }});
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  // returns a transparent gif
-  return {
-    statusCode: 200,
-    body: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
-    headers: { "content-type": "image/gif" },
-    isBase64Encoded: true,
-  };
-};
+const https = require('https');
 
 // never write your own node-fetch
 function fetch(url, options = { method: "GET" }) {
@@ -72,3 +40,42 @@ class HttpError extends Error {
     this.statusCode = statusCode;
   }
 }
+// const ANALYTICS_URL = process.env.ANALYTICS_URL;
+const BASEURL = process.env.JSONBIN_BASE_URL; // base url for jsonbin
+
+exports.handler = async ({ headers }) => {
+  if (BASEURL) {
+    // referer is the page the request came from
+    // e.g. https://oliverjam.es/blog/
+    const referer = headers.referer;
+    const ua = headers["user-agent"];
+    // pathname is the bit after the domain
+    // e.g. /blog/
+    const { pathname } = new URL(referer);
+
+    try {
+      // push a new record for this url & UA
+      const body = JSON.stringify({ url: pathname, ua });
+      const res = await fetch(`${BASEURL}/v3/c`, { 
+        method: "POST", 
+        body, 
+        headers: {
+          "X-Master-Key": process.env.MASTER_KEY, 
+          "X-Collection-Id": "6286d082449a1f3821e50552" // 
+        }
+      }); 
+      console.log(res)
+    } catch (error) {
+      console.log('counter.js')
+      console.log(error);
+    }
+  }
+
+  // returns a transparent gif
+  return {
+    statusCode: 200,
+    body: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+    headers: { "content-type": "image/gif" },
+    isBase64Encoded: true,
+  };
+};
